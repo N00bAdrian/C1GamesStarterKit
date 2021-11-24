@@ -53,10 +53,11 @@ class AlgoStrategy(gamelib.AlgoCore):
         game engine.
         """
         game_state = gamelib.GameState(self.config, turn_state)
+        game_state.attempt_spawn(DEMOLISHER, [24, 10], 3)
         gamelib.debug_write('Performing turn {} of your custom algo strategy'.format(game_state.turn_number))
         game_state.suppress_warnings(True)  #Comment or remove this line to enable warnings.
 
-        self.starter_strategy(game_state)
+        self.dummy_strategy(game_state)
 
         game_state.submit_turn()
 
@@ -65,6 +66,9 @@ class AlgoStrategy(gamelib.AlgoCore):
     NOTE: All the methods after this point are part of the sample starter-algo
     strategy and can safely be replaced for your custom algo.
     """
+
+    def dummy_strategy(self, game_state):
+        game_state.attempt_spawn(SCOUT, [13,0], game_state.turn_number)
 
     def starter_strategy(self, game_state):
         """
